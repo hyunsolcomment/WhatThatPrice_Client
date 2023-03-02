@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+button {
+  border: 1px solid white;
+  color: white;
+  width: 100px;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: white;
+  color: #252525;
+}
+
+input {
+  outline: none;
+  border: 1px solid white;
+  background: #252525;
+  color: white;
+  padding: 5px;
+}

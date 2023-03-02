@@ -1,2 +1,2 @@
-# WhatThatPrice_Client
- 물건 맞추기 클라이언트
+# electron-react-typescript-quickstart
+ Electron + React + Typescript 환경 빠르게 세팅하기
