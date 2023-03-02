@@ -45,6 +45,13 @@ function App() {
 
   return (
     <div className="App">
+
+      <div className="header">
+        <div className="user-profile">
+          (유저 이름)
+        </div>
+      </div>
+
       <div className="server-list">
         {
           servers?.map((value,i) => {
@@ -56,8 +63,12 @@ function App() {
       </div>
 
       <div className="server-manage-field">
-        <input id="server-input" className="server-input" onChange={changeHandler} />
-        <button id="server-add-btn" onClick={clickHandler}>서버추가</button>
+        <button>직접연결</button>
+        <button>직접연결</button>
+        <button>서버추가</button>
+        <button>수정</button>
+        <button>삭제</button>
+        <button>새로고침</button>
       </div>
     </div>
   );

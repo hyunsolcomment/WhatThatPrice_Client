@@ -1,0 +1,12 @@
+.header {
+    position: absolute;
+    right: 0;
+    float: right;
+}
+
+.server-manage-field {
+    background: rgb(243, 243, 243);
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+}

@@ -24,14 +24,14 @@
     "web-vitals": "^3.1.1"
   },
   "scripts": {
-    "start": "concurrently \"cross-env BROWSER=none yarn run start-react\" \"wait-on http://127.0.0.1:3000 && yarn run electron:watch\"",
+    "start": "concurrently \"cross-env BROWSER=none npm run start-react\" \"wait-on http://127.0.0.1:3000 && npm run electron:watch\"",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "postinstall": "electron-builder install-app-deps",
     "electron:dev": "tsc -p electron && electron .",
     "electron:watch": "nodemon --watch electron -e ts --exec npm run electron:dev",
-    "electron:build": "yarn build && tsc -p electron && electron-builder",
+    "electron:build": "npm build && tsc -p electron && electron-builder",
     "eject": "react-scripts eject"
   },
   "build": {
