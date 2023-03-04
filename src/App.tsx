@@ -1,5 +1,6 @@
 import './css/home.css';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useRef } from 'react';
+import ServerItem from './ServerItem';
 
 declare global {
   interface Window {
@@ -9,36 +10,42 @@ declare global {
 
 function App() {
   const [ servers, setServers ] = useState<string[]>();
-  const [ serverInput, setServerInput ] = useState<string>();
+  const serverInputRef = useRef<HTMLInputElement>(null);
+  const [ serverAddMode, setServerAddMode ] = useState<boolean>();
 
   useEffect(() => {
-    reload();
+
+    // 서버주소 로드
+    const load = async () => {
+      await window.api.init();
+      await window.api.loadServers();
+
+      setServers(window.api.getServers());
+    }
+
+    load();
   }, []);
 
-  const reload = async () => {
-    await window.api.init();
-    setServers(window.api.getServers());
-  }
-
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    switch(e.target.id) {
-      case "server-input":
-        setServerInput(e.target.value);
-        break;
-    }
-  }
-
-  const clickHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const clickHandler = async (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
 
     switch(target.id) {
-
       // 서버추가
       case "server-add-btn":
-        if(serverInput) {
-          window.api.addServer(serverInput);
-          reload();
+        if(serverInputRef.current) {
+          const ip = serverInputRef.current.value;
+
+          if(ip.length > 0) { 
+            await window.api.addServer(ip);
+            setServers([...window.api.getServers()]);
+
+          }
         }
+        break;
+
+      // 서버추가 취소
+      case "server-add-cancel-btn":
+        setServerAddMode(false);
         break;
     }
   }
@@ -47,28 +54,35 @@ function App() {
     <div className="App">
 
       <div className="header">
-        <div className="user-profile">
-          (유저 이름)
+        <div className="logo bold">WhatThatPrice</div>
+        <div className="user-image">
+          <img src="img/TestProfileImage.png" />
         </div>
       </div>
 
       <div className="server-list">
         {
-          servers?.map((value,i) => {
+          // 서버 목록 출력하기 
+          servers?.map((ip,i) => {
             return (
-              <div key={i}>{ value }</div>
+              <ServerItem key={i} ip={ip} index={i} setServers={setServers} servers={servers} />
             )
           })
         }
-      </div>
-
-      <div className="server-manage-field">
-        <button>직접연결</button>
-        <button>직접연결</button>
-        <button>서버추가</button>
-        <button>수정</button>
-        <button>삭제</button>
-        <button>새로고침</button>
+        {
+          !serverAddMode &&
+          <div className="text-center hover-bg" onClick={() => setServerAddMode(true)}>+</div>
+        }
+        {
+          serverAddMode &&
+          <div id="server-add">
+            <input className="server-input" ref={serverInputRef} placeholder="여기에 서버주소를 입력해주세요." />
+            <div className="server-add fl-right">
+              <button id="server-add-btn" className="fs-12 ml-5" onClick={clickHandler}>추가</button>
+              <button id="server-add-cancel-btn" className="fs-12 ml-5" onClick={clickHandler}>취소</button>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

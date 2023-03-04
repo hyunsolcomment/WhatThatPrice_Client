@@ -1,17 +1,119 @@
 .header {
-    position: absolute;
+    position: sticky;
+    top: 0;
+    left: 50%;
     right: 0;
     float: right;
+    background: rgb(243, 243, 243);
+    color: #252525;
+    width: 100%;
+    height: 50px;
+}
+
+.header>.logo {
+    position: relative;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    display: inline-block;
+}
+
+.header>.user-image {
+    position: relative;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 35px;
+    border-radius: 5px;
+    float: right;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.header>.user-image img {
+    height: 40px;
 }
 
 .server-manage-field {
+    position: absolute;
+    bottom: 40px;   
+    left: 50%;
+    transform: translateX(-50%);
     background: rgb(243, 243, 243);
-    width: 100%;
+    padding: 10px;
     height: 50px;
+    white-space:nowrap;
     border-radius: 5px;
 }
 
-button {
-    background: rgb(233, 233, 233);
-    height: 35px;
+.server-manage-field>div {
+    position: relative;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.server-manage-field button:not(.first) {
+    margin-left: 5px;
+}
+
+.App {
+    margin: 5px;
+}
+
+/* 서버주소 목록 */
+.server-list {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+}
+
+.server-list .status {
+    width: 7px;
+    height: 7px;
+}
+
+.server-list>div {
+    margin-top: 5px;
+    background: rgb(243, 243, 243);
+    padding: 10px;
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+.server-list .server-input {
+    width: 460px;
+}
+
+.server-list .server-add button {
+    height: 26px;
+}
+
+.server-list>div:hover:not(#server-add) {
+    transform: scale(1.05);
+}
+
+.server-list>div>.users {
+    font-family: light;
+    font-size: 12px;
+}
+
+.server-list .ip {
+    margin-top: 10px;
+    font-family: light;
+    font-size: 12px;
+}
+
+.server-list .remove-btn {
+    height: 25px;
+    width: 50px;
+    margin-top: 10px;
+}
+
+.server-list .remove-btn:hover {
+    background: rgb(254, 104, 104);
+    color: white;
 }

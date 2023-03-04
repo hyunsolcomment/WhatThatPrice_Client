@@ -1,28 +1,138 @@
+@font-face {
+  font-family: 'thin';
+  src: url("./css/font/Pretendard-Thin.ttf");
+}
+
+@font-face {
+  font-family: 'black';
+  src: url("./css/font/Pretendard-Black.ttf");
+}
+
+@font-face {
+  font-family: 'regular';
+  src: url("./css/font/Pretendard-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'light';
+  src: url("./css/font/Pretendard-Light.ttf");
+}
+
+.thin {
+  font-family: thin;
+}
+
+.bold {
+  font-family: black;
+}
+
+.light {
+  font-family: light;
+}
+
+.regular {
+  font-family: regular;
+}
+
 body {
-  margin: 0;
-  padding: 0;
   overflow: hidden;
+  font-family: regular;
+  font-size: 15px;
 }
 
 button {
-  border: 1px solid white;
-  color: white;
-  width: 100px;
-  background: transparent;
+  background: rgb(233, 233, 233);
+  height: 35px;
+  border-radius: 5px;
+  color: #252525;
+  border: 0;
   cursor: pointer;
   padding: 5px;
   transition: all 0.2s;
+  width: 100px;
+  font-family: regular;
+  font-size: 15px;
 }
 
 button:hover {
-  background: white;
+  background: rgb(224, 224, 224);
   color: #252525;
 }
 
 input {
+  border: 0;
   outline: none;
-  border: 1px solid white;
-  background: #252525;
-  color: white;
   padding: 5px;
+  font-family: regular;
+  border-radius: 5px;
+}
+
+.bg-red {
+  background: rgb(254, 104, 104);
+}
+
+.bg-gray {
+  background: gray;
+}
+
+.circle {
+  border-radius: 100px;
+}
+
+.bg-lime {
+  background: rgb(133, 249, 133);
+}
+
+.fc-white {
+  color: white;
+}
+
+.fc-black {
+  color: #252525;
+}
+
+.fl-right {
+  float: right;
+}
+
+.fl-left {
+  float: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.y-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.x-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+*:hover:is(.hover-bg) {
+  background: rgb(226, 226, 226);
+}
+
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.bg-default {
+  background: rgb(243, 243, 243)
+}
+
+.ml-5 {
+  margin-left: 5px;
 }

@@ -4,6 +4,8 @@ import Game from "./module/Game";
 contextBridge.exposeInMainWorld('api', {
     init: async () => Game.init(),
     getServers: (): string[] => Game.servers,
-    addServer: (ip: string) => Game.servers.push(ip),
-    removeServer: (index: number) => Game.servers.splice(index, 1)
+    addServer: async (ip: string) => await Game.addServer(ip),
+    editServer: async (index: number, ip: string) => await Game.editServer(index, ip),
+    removeServer: async (index: number) => await Game.removeServer(index),
+    loadServers: async() => await Game.loadServers()
 });
