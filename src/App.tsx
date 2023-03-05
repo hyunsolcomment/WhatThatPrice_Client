@@ -1,91 +1,21 @@
-import './css/home.css';
-import { useEffect,useState,useRef } from 'react';
-import ServerItem from './ServerItem';
-
-declare global {
-  interface Window {
-    api?: any;
-  }
-}
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Connecting from "./Connecting";
+import Game from "./Game";
+import Home from "./Home";
 
 function App() {
-  const [ servers, setServers ] = useState<string[]>();
-  const serverInputRef = useRef<HTMLInputElement>(null);
-  const [ serverAddMode, setServerAddMode ] = useState<boolean>();
-
-  useEffect(() => {
-
-    // 서버주소 로드
-    const load = async () => {
-      await window.api.init();
-      await window.api.loadServers();
-
-      setServers(window.api.getServers());
-    }
-
-    load();
-  }, []);
-
-  const clickHandler = async (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement;
-
-    switch(target.id) {
-      // 서버추가
-      case "server-add-btn":
-        if(serverInputRef.current) {
-          const ip = serverInputRef.current.value;
-
-          if(ip.length > 0) { 
-            await window.api.addServer(ip);
-            setServers([...window.api.getServers()]);
-
-          }
-        }
-        break;
-
-      // 서버추가 취소
-      case "server-add-cancel-btn":
-        setServerAddMode(false);
-        break;
-    }
-  }
-
-  return (
-    <div className="App">
-
-      <div className="header">
-        <div className="logo bold">WhatThatPrice</div>
-        <div className="user-image">
-          <img src="img/TestProfileImage.png" />
-        </div>
-      </div>
-
-      <div className="server-list">
-        {
-          // 서버 목록 출력하기 
-          servers?.map((ip,i) => {
-            return (
-              <ServerItem key={i} ip={ip} index={i} setServers={setServers} servers={servers} />
-            )
-          })
-        }
-        {
-          !serverAddMode &&
-          <div className="text-center hover-bg" onClick={() => setServerAddMode(true)}>+</div>
-        }
-        {
-          serverAddMode &&
-          <div id="server-add">
-            <input className="server-input" ref={serverInputRef} placeholder="여기에 서버주소를 입력해주세요." />
-            <div className="server-add fl-right">
-              <button id="server-add-btn" className="fs-12 ml-5" onClick={clickHandler}>추가</button>
-              <button id="server-add-cancel-btn" className="fs-12 ml-5" onClick={clickHandler}>취소</button>
+    
+    return (
+        <HashRouter>
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/connecting" element={<Connecting />} />
+                    <Route path="/game" element={<Game />} />
+                </Routes>
             </div>
-          </div>
-        }
-      </div>
-    </div>
-  );
+        </HashRouter>
+    )
 }
 
 export default App;

@@ -1,11 +1,11 @@
 import { useEffect,useState } from "react";
+
 import Server from "./game/Server";
 import IServerInfo from "./types/IServerInfo";
 
 export default function ServerItem(props: {ip: string, index: number, setServers: Function, servers: string[] }) {
     const [ info, setInfo ] = useState<IServerInfo>();
     const [input,setInput] = useState<string>(props.ip);
-
     const originIP = props.ip;
 
     useEffect(() => {
